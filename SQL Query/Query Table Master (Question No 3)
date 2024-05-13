@@ -1,0 +1,13 @@
+SELECT o.Date AS order_date,
+pc.CategoryName AS category_name,
+p.ProdName AS product_name,
+p.Price AS product_price,
+o.Quantity AS order_qty,
+(p.Price * o.Quantity) AS total_sales,
+c.CustomerEmail AS cust_email,
+c.CustomerCity AS cust_city
+FROM `pbi-bi-analytics.Final_Project.Orders` AS o
+LEFT JOIN `pbi-bi-analytics.Final_Project.Customers` AS c ON o.CustomerID = c.CustomerID
+LEFT JOIN `pbi-bi-analytics.Final_Project.Products` AS p ON o.ProdNumber = p.ProdNumber
+LEFT JOIN `pbi-bi-analytics.Final_Project.ProductCategory` AS pc ON p.Category = pc.CategoryID
+ORDER BY o.Date
